@@ -151,12 +151,12 @@ class Resizer:
                 img = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
                 if img is None:
                     raise Exception("Image decoding error")
-                if len(img.shape) == 3 and img.shape[-1] == 4:
-                    # alpha matting with white background
-                    alpha = img[:, :, 3, np.newaxis]
-                    img = alpha / 255 * img[..., :3] + 255 - alpha
-                    img = np.rint(img.clip(min=0, max=255)).astype(np.uint8)
-                    encode_needed = True
+                # if len(img.shape) == 3 and img.shape[-1] == 4:
+                #     # alpha matting with white background
+                #     alpha = img[:, :, 3, np.newaxis]
+                #     img = alpha / 255 * img[..., :3] + 255 - alpha
+                #     img = np.rint(img.clip(min=0, max=255)).astype(np.uint8)
+                #     encode_needed = True
                 original_height, original_width = img.shape[:2]
                 # check if image is too small
                 if min(original_height, original_width) < self.min_image_size:
