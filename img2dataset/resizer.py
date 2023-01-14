@@ -145,7 +145,8 @@ class Resizer:
             with SuppressStdoutStderr():
                 cv2.setNumThreads(1)
                 img_stream.seek(0)
-                encode_needed = imghdr.what(img_stream) != self.what_ext if self.skip_reencode else True
+                # encode_needed = imghdr.what(img_stream) != self.what_ext if self.skip_reencode else True
+                encode_needed = False
                 img_stream.seek(0)
                 img_buf = np.frombuffer(img_stream.read(), np.uint8)
                 img = cv2.imdecode(img_buf, cv2.IMREAD_UNCHANGED)
